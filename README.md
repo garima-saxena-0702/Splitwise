@@ -5,25 +5,25 @@
 ## Tables
 - User Table - contain user info
 ***schema***
-&ensp; Id int
-&ensp; Name string
+>&ensp; Id int
+>&ensp; Name string
 
 - Group Table - contain group info
 ***schema***
-&ensp; Id int
-&ensp; Name String
-&ensp; Member int
+>&ensp; Id int
+>&ensp; Name String
+>&ensp; Member int
 
 - Transaction Table - contain transaction info
 ***schema***
-&ensp; Id int
-&ensp; Groupid string
-&ensp; Desc string
-&ensp; Date Time
-&ensp; Creator int
-&ensp; Totalamount int
-&ensp; Owee int
-&ensp; Pendingamount int
+>&ensp; Id int
+>&ensp; Groupid string
+>&ensp; Desc string
+>&ensp; Date Time
+>&ensp; Creator int
+>&ensp; Totalamount int
+>&ensp; Owee int
+>&ensp; Pendingamount int
 
 ## APIs
 ***Create User POST***
