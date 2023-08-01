@@ -15,9 +15,40 @@ type SplitwiseDB struct {
 }
 
 func CreateDB() *SplitwiseDB {
+	println("Starting db...")
+	
 	connStr := "user=setu dbname=splitwisedb password=password host=localhost sslmode=disable"
 	db, err := sql.Open("postgres", connStr)
-	//db, err := sql.Open("postgres", "dbname=splitwisedb user=setu password=password")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	//Create the required tables
+	createUser := "CREATE TABLE USERS ("+
+		"id INTEGER PRIMARY KEY,"+
+		"name TEXT NOT NULL);"
+	createGroups := "CREATE TABLE GROUPS ("+
+		"groupid INTEGER NOT NULL,"+
+		"groupname TEXT NOT NULL,"+
+		"member INTEGER references USERS(id) NOT NULL);"
+	createTransactions := "CREATE TABLE TRANSACTIONS ("+
+		"tid INTEGER NOT NULL,"+
+		"groupid INTEGER NOT NULL,"+
+		"description TEXT NOT NULL,"+
+		"date date NOT NULL,"+
+		"creator INTEGER references USERS(id) NOT NULL,"+
+		"totalamount INTEGER NOT NULL,"+
+		"owee INTEGER references USERS(id) NOT NULL,"+
+		"pendingamount INTEGER NOT NULL);"
+	_, err = db.Query(createUser)
+	if err != nil {
+		log.Fatal(err)
+	}
+	_, err = db.Query(createGroups)
+	if err != nil {
+		log.Fatal(err)
+	}
+	_, err = db.Query(createTransactions)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -148,5 +179,4 @@ func (db SplitwiseDB) SelectTransctions(gid int) *[]schemas.Transactions {
 	}
 
 	return &txns
-
 }

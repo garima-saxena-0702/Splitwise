@@ -2,9 +2,8 @@ package main
 
 import (	
 	"github.com/gin-gonic/gin"
+	"splitwise/handlers"
 )
-// import "net/http"
-import "splitwise/handlers"
 
 func main() {
 	//router handlers

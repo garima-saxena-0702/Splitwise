@@ -20,8 +20,6 @@ func init() {
 func GetTransactions (c *gin.Context){
 	var gid, uid int
 	sgid, gok := c.GetQuery("groupid")
-	//fromDate, fok := c.GetQuery("fromDate")
-	//toDate, tok := c.GetQuery("toDate")
 	if !gok {
 		gid = -1
 	} else {
